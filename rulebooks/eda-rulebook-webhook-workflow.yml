@@ -9,15 +9,9 @@
         host: 0.0.0.0
         port: 5001
   rules:
-    - name: EDA | Webhook | Run playbook to greet our webhook callers
+    - name: EDA | Webhook | Run workflow to greet our webhook callers
       condition: event.payload.name == 'greeting'
       actions:
         - run_workflow_template:
-            name: "[EDA] Webhook workflow"
+            name: "[EDA] Webhook to workflow"
             organization: Default
-            job_args:
-              extra_vars:
-                greeting: "{{ event.payload.message }}"
-        - set_fact:
-            fact:
-              webhookgreeting: "{{ event.payload.message }}"
